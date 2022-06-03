@@ -1,0 +1,113 @@
+{
+    "name": "status-bar",
+    "productName": "Status Bar App",
+    "version": "1.0.0",
+    "description": "Status bar application for Mac desktop that uses Electron and React.js",
+    "main": ".webpack/main",
+    "scripts": {
+        "build": "electron-forge make",
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish",
+        "lint": "eslint --ext .ts,.tsx ."
+    },
+    "keywords": [],
+    "author": {
+        "name": "Kevin Turner",
+        "email": "kevin@ksturner.com"
+    },
+    "license": "MIT",
+    "config": {
+        "forge": {
+            "packagerConfig": {
+                "icon": "src/static/Application.icns",
+                "extraResource": [
+                    "src/static/icon_16x16@2x.png",
+                    "src/static/icon_16x16.png"
+                ]
+            },
+            "makers": [
+                {
+                    "name": "@electron-forge/maker-squirrel",
+                    "config": {
+                        "name": "my_new_app"
+                    }
+                },
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                },
+                {
+                    "name": "@electron-forge/maker-deb",
+                    "config": {}
+                },
+                {
+                    "name": "@electron-forge/maker-rpm",
+                    "config": {}
+                }
+            ],
+            "plugins": [
+                [
+                    "@electron-forge/plugin-webpack",
+                    {
+                        "mainConfig": "./webpack.main.config.js",
+                        "renderer": {
+                            "config": "./webpack.renderer.config.js",
+                            "entryPoints": [
+                                {
+                                    "html": "./src/index.html",
+                                    "js": "./src/renderer.ts",
+                                    "name": "main_window",
+                                    "preload": {
+                                        "js": "./src/preload.ts"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.0-beta.61",
+        "@electron-forge/maker-deb": "^6.0.0-beta.61",
+        "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+        "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+        "@electron-forge/maker-zip": "^6.0.0-beta.61",
+        "@electron-forge/plugin-webpack": "6.0.0-beta.61",
+        "@types/react": "^17.0.38",
+        "@types/react-dom": "^17.0.11",
+        "@typescript-eslint/eslint-plugin": "^4.0.1",
+        "@typescript-eslint/parser": "^4.0.1",
+        "@vercel/webpack-asset-relocator-loader": "1.7.0",
+        "autoprefixer": "^10.4.2",
+        "copy-webpack-plugin": "^10.2.0",
+        "css-loader": "^6.0.0",
+        "electron": "16.0.5",
+        "eslint": "^7.6.0",
+        "eslint-plugin-import": "^2.20.0",
+        "file-loader": "^6.2.0",
+        "fork-ts-checker-webpack-plugin": "^6.0.1",
+        "node-loader": "^2.0.0",
+        "postcss": "^8.4.5",
+        "postcss-loader": "^6.2.1",
+        "puppeteer": "^13.1.0",
+        "style-loader": "^3.0.0",
+        "tailwindcss": "^3.0.18",
+        "ts-loader": "^9.2.2",
+        "typescript": "^4.0.2"
+    },
+    "dependencies": {
+        "axios": "^0.25.0",
+        "date-fns": "^2.28.0",
+        "electron-squirrel-startup": "^1.0.0",
+        "jsdom": "^19.0.0",
+        "puppeteer-core": "^13.1.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    }
+}
