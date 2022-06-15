@@ -23,17 +23,3 @@ body {
     text-shadow: 0 0 2px #fff, 0 0 6px #fff, 0 0 10px #fff, 0 0 15px #228dff,
         0 0 25px #228dff, 0 0 30px #228dff, 0 0 40px #228dff, 0 0 50px #228dff;
 }
-/*
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #333;
-        color: white;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    body {
-        background: #ddd;
-        color: black;
-    }
-} */

@@ -341,18 +341,11 @@ app.on('status:covid', async (message) => {
             }
             await page.goto(iframe.src);
             await sleep(12000);
-            // console.log('slept for initial 12 seconds');
-            // await page.screenshot({ path: 'screenshot.png' });
-            // console.log('screenshot taken');
-            // await sleep(1000);
-            // console.log('slept for 4 more seconds');
             content = await page.content();
 
             jsdom = new JSDOM(content);
             document = jsdom.window.document;
 
-            // console.log('trying to get text');
-            // fs.writeFileSync('content.html', jsdom.serialize());
             const sel =
                 'body > div.full-page-container.bg-background > calcite-shell > div.dashboard-container.shadow-2.calcite-theme-dark.flex.flex-auto.flex-col.overflow-hidden > div.flex-auto.flex.relative.overflow-hidden > div > div > div > margin-container > full-container > div:nth-child(5) > margin-container > full-container > div > div.widget-body.flex-auto.w-full.flex.flex-col.justify-center.overflow-hidden > div > div.responsive-text.flex.flex-col.flex-none.shrink.overflow-hidden.indicator-center-text > svg > g.responsive-text-label > text';
             const element = document.querySelector(sel);
@@ -442,11 +435,6 @@ app.on('will-quit', async () => {
         console.log('clearing timer');
         clearInterval(timer);
     }
-    // if (browser) {
-    //     console.log('closing browser');
-    //     await browser.close();
-    //     browser = null;
-    // }
 });
 
 app.on('activate', async () => {
@@ -456,6 +444,3 @@ app.on('activate', async () => {
         await createWindow();
     }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
